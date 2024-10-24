@@ -1,18 +1,12 @@
 from turtle import up, goto, down, circle, update, setup, color
 from turtle import hideturtle, tracer, onscreenclick, done, width
 from freegames import line
-
-"""Tic Tac Toe
-
-Exercises
-
-1. Give the X and O a different color and width.
-2. What happens when someone taps a taken spot?
-3. How would you detect when someone has won?
-4. How could you create a computer player?
-"""
+import tkinter as tk
+from tkinter import messagebox
 
 """
+Tic Tac Toe
+
 Codigo modificado por Alejandro Araiza Escamilla para la semana Tec
 Herramientas computacionales: el arte de la programacion (Gpo 201)
 """
@@ -55,16 +49,31 @@ def floor(value):
 
 state = {'player': 0}
 players = [drawx, drawo]
+occupied = {}
+
+
+def show_error():
+    """Show an error message for an occupied square."""
+    root = tk.Tk()
+    root.withdraw()
+    messagebox.showwarning("Error", "Casilla ocupada, elige otra.")
+    root.destroy()
 
 
 def tap(x, y):
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
+
+    if (x, y) in occupied:
+        show_error()
+        return
+
     player = state['player']
     draw = players[player]
     draw(x, y)
     update()
+    occupied[(x, y)] = player
     state['player'] = not player
 
 
