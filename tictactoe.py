@@ -1,5 +1,5 @@
-from turtle import up, goto, down, circle, update, setup
-from turtle import hideturtle, tracer, onscreenclick, done
+from turtle import up, goto, down, circle, update, setup, color
+from turtle import hideturtle, tracer, onscreenclick, done, width
 from freegames import line
 
 """Tic Tac Toe
@@ -28,16 +28,24 @@ def grid():
 
 def drawx(x, y):
     """Draw X player."""
-    line(x, y, x + 133, y + 133)
-    line(x, y + 133, x + 133, y)
+    color('red')
+    width(5)
+    up()
+    goto(x + 25, y + 25)
+    down()
+    line(x + 25, y + 25, x + 108, y + 108)
+    line(x + 25, y + 108, x + 108, y + 25)
+    up()
 
 
 def drawo(x, y):
     """Draw O player."""
+    color('red')
+    width(5)
     up()
-    goto(x + 67, y + 5)
+    goto(x + 65, y + 25)
     down()
-    circle(62)
+    circle(40)
 
 
 def floor(value):
