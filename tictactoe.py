@@ -1,3 +1,7 @@
+from turtle import up, goto, down, circle, update, setup
+from turtle import hideturtle, tracer, onscreenclick, done
+from freegames import line
+
 """Tic Tac Toe
 
 Exercises
@@ -8,9 +12,10 @@ Exercises
 4. How could you create a computer player?
 """
 
-from turtle import *
-
-from freegames import line
+"""
+Codigo modificado por Alejandro Araiza Escamilla para la semana Tec
+Herramientas computacionales: el arte de la programacion (Gpo 201)
+"""
 
 
 def grid():
