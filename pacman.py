@@ -159,7 +159,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)
+    ontimer(move, 85)
 
 # Cambia la dirección de Pacman
 def change(x, y):
