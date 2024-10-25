@@ -1,6 +1,6 @@
 from random import choice
 from turtle import (Turtle, bgcolor, clear, dot, goto, hideturtle, listen,
-                    onkey, ontimer, setup, tracer, update, up)
+                    onkey, ontimer, setup, tracer, update, up, done)
 
 from freegames import floor, vector
 
@@ -174,3 +174,4 @@ onkey(lambda: change(-5, 0), 'Left')
 onkey(lambda: change(0, 5), 'Up')
 onkey(lambda: change(0, -5), 'Down')
 move()
+done()
