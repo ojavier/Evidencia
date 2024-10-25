@@ -19,7 +19,9 @@ state = {'score': 0}
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
 aim = vector(5, 0)
+# Posición inicial de Pacman
 pacman = vector(-40, -80)
+# Lista de fantasmas con sus posiciones iniciales
 ghosts = [
     [vector(-180, 160), vector(5, 0)],
     [vector(-180, -160), vector(0, 5)],
@@ -92,8 +94,9 @@ def valid(point):
 # Dibuja el mundo del juego
 def world():
     """Draw world using path."""
-    bgcolor('black')
-    path.color('blue')
+    # Colores del tablero
+    bgcolor('dark blue')
+    path.color('black')
 
     for index in range(len(tiles)):
         tile = tiles[index]
