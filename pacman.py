@@ -23,10 +23,10 @@ aim = vector(5, 0)
 pacman = vector(-40, -80)
 # Lista de fantasmas con sus posiciones iniciales
 ghosts = [
-    [vector(-180, 160), vector(5, 0)],
+    [vector(-180, 160), vector(7, 0)],
     [vector(-180, -160), vector(0, 5)],
     [vector(100, 160), vector(0, -5)],
-    [vector(100, -160), vector(-5, 0)],
+    [vector(100, -160), vector(-6, 0)],
 ]
 # fmt: off
 # Tablero de juego
@@ -159,7 +159,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 85)
+    ontimer(move, 100)
 
 # Cambia la dirección de Pacman
 def change(x, y):
