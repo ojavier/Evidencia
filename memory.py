@@ -69,13 +69,18 @@ def tap(x, y):
 
     Invierte su estado como marcada o escondida.
 
+    Verifica que no se esté tocando en una zona fuera de rango.
+
     x (int): La coordenada x de la esquina inferior izquierda.
     y (int): La coordenada y de la esquina inferior izquierda.
     """
-    global taps
-    taps += 1
     spot = index(x, y)
     mark = state['mark']
+
+    if y < -200 or y > 200:
+        return
+    else:
+        victory()
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
@@ -83,6 +88,23 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+
+
+def victory():
+    """
+    Verifica si ya se han revelado todas las casillas.
+
+    Actualiza el contador de clicks.
+
+    Esta función no tiene parámetros
+    """
+    global taps
+    if True not in hide:
+        turtle.up()
+        turtle.goto(-30, 210)
+        turtle.write("Finish!", font=('Arial', 30, 'normal'))
+    else:
+        taps += 1
 
 
 def draw():
