@@ -13,7 +13,7 @@ Se modificó el juego **TicTacToe** para que siguiera el estándar PEP8 y Flake8
 
 El juego **Pacman** ha sido ajustado para seguir los estándares de PEP8 y Flake8. Se implementaron mejoras en la organización del código y se corrigieron errores de formato.
 
--Se modificó el color del tablero
--Se aumentó la velocidad de los fantasmas
+- Se modificó el color del tablero.
+- Se aumentó la velocidad de los fantasmas.
 
 ---
