@@ -1,18 +1,15 @@
-"""Memory, puzzle game of number pairs.
-
-Exercises:
-
-1. Count and print how many taps occur.
-2. Decrease the number of tiles to a 4x4 grid.
-3. Detect when all tiles are revealed.
-4. Center single-digit tile.
-5. Use letters instead of tiles.
-"""
-
-from random import *
-from turtle import *
+from random import shuffle
+import turtle
 
 from freegames import path
+
+"""
+Memoria
+
+Código editado por Luis Adrián Uribe Cruz para la semana Tec
+Herramientas computacionales: el arte de la programación (Gpo 201)
+"""
+
 
 car = path('car.gif')
 tiles = list(range(32)) * 2
@@ -21,30 +18,60 @@ hide = [True] * 64
 
 
 def square(x, y):
-    """Draw white square with black outline at (x, y)."""
-    up()
-    goto(x, y)
-    down()
-    color('black', 'white')
-    begin_fill()
+    """
+    Dibuja un recuadro blaco con un contorno negro.
+
+    El cuadro se dibuja en las coordenadas específicadas.
+
+    Parámetros:
+    x (int): La coordenada x de la esquina inferior izquierda.
+    y (int): La coordenada y de la esquina inferior izquierda.
+    """
+    turtle.up()
+    turtle.goto(x, y)
+    turtle.down()
+    turtle.color('black', 'white')
+    turtle.begin_fill()
     for count in range(4):
-        forward(50)
-        left(90)
-    end_fill()
+        turtle.forward(50)
+        turtle.left(90)
+    turtle.end_fill()
 
 
 def index(x, y):
-    """Convert (x, y) coordinates to tiles index."""
+    """
+    Convierte las coordenadas en índices.
+
+    Con las coordenadas dadas se obtiene el índice para la casilla.
+
+    Parámetros:
+    x (int): La coordenada x de la esquina inferior izquierda.
+    y (int): La coordenada y de la esquina inferior izquierda.
+    """
     return int((x + 200) // 50 + ((y + 200) // 50) * 8)
 
 
 def xy(count):
-    """Convert tiles count to (x, y) coordinates."""
+    """
+    Convierte el conteo de las casillas en coordenadas (x,y).
+
+    Operación inversa de la función index()
+
+    Parámetros:
+    count(int): El índice de la posición de la casilla.
+    """
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
 
 def tap(x, y):
-    """Update mark and hidden tiles based on tap."""
+    """
+    Actualiza el estado de la casilla al seleccionarla.
+
+    Invierte su estado como marcada o escondida.
+
+    x (int): La coordenada x de la esquina inferior izquierda.
+    y (int): La coordenada y de la esquina inferior izquierda.
+    """
     spot = index(x, y)
     mark = state['mark']
 
@@ -57,11 +84,18 @@ def tap(x, y):
 
 
 def draw():
-    """Draw image and tiles."""
-    clear()
-    goto(0, 0)
-    shape(car)
-    stamp()
+    """
+    Crea la imagen a revelar y las casillas.
+
+    Coloca la imagen de fondo y la cubre con 64 casillas.
+    Verifica el estado de las casillas para saber dibujarlas.
+
+    No posee parámetros.
+    """
+    turtle.clear()
+    turtle.goto(0, 0)
+    turtle.shape(car)
+    turtle.stamp()
 
     for count in range(64):
         if hide[count]:
@@ -72,20 +106,20 @@ def draw():
 
     if mark is not None and hide[mark]:
         x, y = xy(mark)
-        up()
-        goto(x + 2, y)
-        color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        turtle.up()
+        turtle.goto(x + 2, y)
+        turtle.color('black')
+        turtle.write(tiles[mark], font=('Arial', 30, 'normal'))
 
-    update()
-    ontimer(draw, 100)
+    turtle.update()
+    turtle.ontimer(draw, 100)
 
 
 shuffle(tiles)
-setup(420, 420, 370, 0)
-addshape(car)
-hideturtle()
-tracer(False)
-onscreenclick(tap)
+turtle.setup(420, 420, 370, 0)
+turtle.addshape(car)
+turtle.hideturtle()
+turtle.tracer(False)
+turtle.onscreenclick(tap)
 draw()
-done()
+turtle.done()
