@@ -1,16 +1,6 @@
-"""Pacman, classic arcade game.
-
-Exercises
-
-1. Change the board.
-2. Change the number of ghosts.
-3. Change where pacman starts.
-4. Make the ghosts faster/slower.
-5. Make the ghosts smarter.
-"""
-
 from random import choice
-from turtle import *
+from turtle import (Turtle, bgcolor, clear, dot, goto, hideturtle, listen,
+                    onkey, ontimer, setup, tracer, update, up)
 
 from freegames import floor, vector
 
@@ -54,7 +44,8 @@ tiles = [
 ]
 # fmt: on
 
-# Dibuja un cuadrado en las coordenadas x y 
+
+# Dibuja un cuadrado en las coordenadas x y
 def square(x, y):
     """Draw square using path at (x, y)."""
     path.up()
@@ -68,13 +59,15 @@ def square(x, y):
 
     path.end_fill()
 
-# índice de caillas correspondientes a un punto
+
+# Índice de celdas correspondientes a un punto
 def offset(point):
     """Return offset of point in tiles."""
     x = (floor(point.x, 20) + 200) / 20
     y = (180 - floor(point.y, 20)) / 20
     index = int(x + y * 20)
     return index
+
 
 # Valida puntos accesibles en el tablero
 def valid(point):
@@ -90,6 +83,7 @@ def valid(point):
         return False
 
     return point.x % 20 == 0 or point.y % 20 == 0
+
 
 # Dibuja el mundo del juego
 def world():
@@ -110,6 +104,7 @@ def world():
                 path.up()
                 path.goto(x + 10, y + 10)
                 path.dot(2, 'white')
+
 
 # Movimiento de Pacman y todos los fantasmas
 def move():
@@ -154,12 +149,8 @@ def move():
         dot(20, 'red')
 
     update()
-
-    for point, course in ghosts:
-        if abs(pacman - point) < 20:
-            return
-
     ontimer(move, 100)
+
 
 # Cambia la dirección de Pacman
 def change(x, y):
@@ -168,7 +159,8 @@ def change(x, y):
         aim.x = x
         aim.y = y
 
-# Configuración inicial de la pantalla y eventos de entrada
+
+# Configuración del juego y escuchadores de eventos
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
@@ -176,10 +168,9 @@ writer.goto(160, 160)
 writer.color('white')
 writer.write(state['score'])
 listen()
+world()
 onkey(lambda: change(5, 0), 'Right')
 onkey(lambda: change(-5, 0), 'Left')
 onkey(lambda: change(0, 5), 'Up')
 onkey(lambda: change(0, -5), 'Down')
-world()
 move()
-done()
