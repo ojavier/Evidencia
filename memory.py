@@ -10,7 +10,7 @@ Código editado por Luis Adrián Uribe Cruz para la semana Tec
 Herramientas computacionales: el arte de la programación (Gpo 201)
 """
 
-
+taps = 0
 car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
@@ -72,6 +72,8 @@ def tap(x, y):
     x (int): La coordenada x de la esquina inferior izquierda.
     y (int): La coordenada y de la esquina inferior izquierda.
     """
+    global taps
+    taps += 1
     spot = index(x, y)
     mark = state['mark']
 
@@ -111,12 +113,17 @@ def draw():
         turtle.color('black')
         turtle.write(tiles[mark], font=('Arial', 30, 'normal'))
 
+    turtle.up()
+    turtle.goto(-200, -240)
+    turtle.write("Toques: ", font=('Arial', 20, 'normal'), move=True)
+    turtle.write(taps, font=('Arial', 20, 'normal'))
+
     turtle.update()
     turtle.ontimer(draw, 100)
 
 
 shuffle(tiles)
-turtle.setup(420, 420, 370, 0)
+turtle.setup(420, 520, 370, 0)
 turtle.addshape(car)
 turtle.hideturtle()
 turtle.tracer(False)
