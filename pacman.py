@@ -14,6 +14,7 @@ from turtle import *
 
 from freegames import floor, vector
 
+# Valores iniciales
 state = {'score': 0}
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
@@ -26,6 +27,7 @@ ghosts = [
     [vector(100, -160), vector(-5, 0)],
 ]
 # fmt: off
+# Tablero de juego
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -50,7 +52,7 @@ tiles = [
 ]
 # fmt: on
 
-
+# Dibuja un cuadrado en las coordenadas x y 
 def square(x, y):
     """Draw square using path at (x, y)."""
     path.up()
@@ -64,7 +66,7 @@ def square(x, y):
 
     path.end_fill()
 
-
+# índice de caillas correspondientes a un punto
 def offset(point):
     """Return offset of point in tiles."""
     x = (floor(point.x, 20) + 200) / 20
@@ -72,7 +74,7 @@ def offset(point):
     index = int(x + y * 20)
     return index
 
-
+# Valida puntos accesibles en el tablero
 def valid(point):
     """Return True if point is valid in tiles."""
     index = offset(point)
@@ -87,7 +89,7 @@ def valid(point):
 
     return point.x % 20 == 0 or point.y % 20 == 0
 
-
+# Dibuja el mundo del juego
 def world():
     """Draw world using path."""
     bgcolor('black')
@@ -106,7 +108,7 @@ def world():
                 path.goto(x + 10, y + 10)
                 path.dot(2, 'white')
 
-
+# Movimiento de Pacman y todos los fantasmas
 def move():
     """Move pacman and all ghosts."""
     writer.undo()
@@ -156,14 +158,14 @@ def move():
 
     ontimer(move, 100)
 
-
+# Cambia la dirección de Pacman
 def change(x, y):
     """Change pacman aim if valid."""
     if valid(pacman + vector(x, y)):
         aim.x = x
         aim.y = y
 
-
+# Configuración inicial de la pantalla y eventos de entrada
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
